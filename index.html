@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2 align="center"> Dang Ky Tai Khoan</h2>
+    <form name="form1" onsubmit="submitform();" method="post" action="#">
+        <div>
+            <label for="txtdn" class="title">Ten Dang Nhap:</label>
+            <input type="text" id="txtdn" onblur="return kiemtratendn();" name="txtdn" size="30" placeholder="txtdn" /><span id="tendn">*</span>
+        </div>
+        <div>
+            <label for="txtmk" class="title">Mat Khau:</label>
+            <input type="password" id="txtmk" onblur="return kiemtrapassvord();" name="txtmk" size="30" placeholder="txtmk" /><span id="mk">*</span>
+        </div>
+        <div>
+            <label for="txtxnmk" class="title">Nhap lai mat khau:</label>
+            <input type="password" id="txtxnmk" onblur="return kirmtraxacnhanpassvord();" name="txtxnmk" size="30" placeholder="txtxnmk" /><span id="xnmk">*</span>
+        </div>
+        <h5 align="center">Thong Tin Ca Nhan</h5>
+        <div>
+            <label for="txtname" class="title">Ho va Ten:</label>
+            <input type="text" id="txtname" name="txtname" size="30" placeholder="txtname" /><span id="hoten">* bat buoc</span>
+        </div>
+        <div>
+            <label for="txtns" class="title">Ngay Sinh:</label>
+            <input type="date" id="txtns" onabort="return kiemtrangaysinh();" name="txtns" size="30" placeholder="txtns" /><span id="ngaysinh"></span>
+        </div>
+        <div class="radio-buttons">
+            <span class="title">Gioi Tinh:</span>
+            <input type="radio" name="gender" id="make" value="m" checked/>
+            <label for="male">Nam</label>
+            <input type="radio" name="gender" id="female" value="f" />
+            <label for="female">Nu</label><br>
+        </div>
+        <div>
+            <label for="txtdc" class="title">Dia chi</label>
+            <input type="text" name="txtdc" id="txtdc" size="30" placeholder="txtdc" /><span id="diachi"></span>
+        </div>
+        <div>
+            <label for="txtdt" class="title">Dien Thoai</label>
+            <input type="number" name="txtdt" id="txtdt" size="30" placeholder="txtdt" /><span id="dienthoai">Phai la so</span>
+        </div>
+        <div>
+            <label for="txtemail" class="title">Email</label>
+            <input type="email" name="txtemail" id="txtemail" size="30" placeholder="txtemail" /><span id="email"></span>
+        </div>
+        <div class="submit">
+            <input type="submit" value="dang ky" id="submit" />
+            <input type="reset" value="huy" id="submit">
+        </div>
+    </form>
+
+
+
+
+    <script>
+        function kiemtratendn() {
+            var re = /^[a-z]\*w;
+            if (re.test(document.getElementById('txtdn').value.trim()) == false) {
+                tendn.innertext = "* bat buoc ,bat dau bang ky tu";
+                return false;
+            } else {
+                tendn.innertext = " *";
+                return true;
+            }
+        }
+
+        function() kiemtrapassvord {
+            var re = /(?=.*\d).{6, }/;
+            id(re.test(document.getElementById('txtmk').value.trim()) == false) {
+                mk.innertext = "* phai co chu,it nhat 6 ky tu";
+                return false;
+            } else {
+                mk.innertext = " *";
+                return true;
+            }
+        }
+
+        function kirmtraxacnhanpassvord() {
+            if (document.getElementById('txtxnmk').value !=
+                document.getElementById('txtmk').value) {
+                xnmk.innertext = " * phai giong o mat khau";
+                return false;
+            } else {
+                xnmk.innertext = " *";
+                return true;
+            }
+        }
+
+        function kiemtrangaysinh() {
+            var ns = new date(document.getElementById('txtns').value);
+            var today = new date();
+            if (eval(today.getFullYear() - ns.getFullYear()) <= 10) {
+                ngaysinh.innertext = "tuoi phai >10";
+                return false;
+            } else {
+                ngaysinh.innertext = "";
+                return true;
+            }
+        }
+
+        function submitform() {
+            if (kiemtratendn() == false || kiemtrapassvord() == false || kirmtraxacnhanpassvord() == false) {
+                alert("Ban chua nhap day du thong tin!");
+            } else {
+                var tt1 = document.getElementById("txtname").value;
+                var tt2 = document.getElementById("txtns").value;
+                var w = open("formvalidation_info.html", "ketqua");
+                w.document.write("<B>THONG TIN CA NHAN</b>");
+                w.document.write("Ho Ten:" + tt1 + "<br>");
+                w.document.write("Nam Sinh:" + tt2 + "<br>");
+            }
+        }
+    </script>
+</body>
+
+</html>
